@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import { CommonUtilitiesService } from 'src/app/services/common-utilities.service';
+
 
 @Component({
   selector: 'app-loading',
@@ -8,13 +7,9 @@ import { CommonUtilitiesService } from 'src/app/services/common-utilities.servic
   styleUrls: ['./loading.component.scss'],
 })
 export class LoadingComponent implements OnInit {
-  // loading$ = this.store.select(AppSelectors.getLoadingStatus);
-  isLoading = false;
-  constructor(private commonUtils: CommonUtilitiesService) {}
+
+  constructor() {}
 
   ngOnInit(): void {
-    this.commonUtils.showLoadingSubscription().subscribe((isLoading) => {
-      this.isLoading = isLoading;
-    });
   }
 }

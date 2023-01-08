@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   passwordMatch: string = '';
   // user: User = new User();
   checkEmail: boolean = false;
+  isLoading = false;
 
   supaBase: SupabaseClient = createClient(
     environment.supabaseUrl,
@@ -27,26 +28,21 @@ export class LoginComponent implements OnInit {
 
   constructor(private commonUtils: CommonUtilitiesService) {}
 
-  ngOnInit(): void {
-    setTimeout(() => {
-      this.commonUtils.toggleLoading(true);
-    }, 2000);
-    setTimeout(() => {
-      this.commonUtils.toggleLoading(false);
-    }, 5000);
-  }
+  ngOnInit(): void {}
 
   signUp = async () => {
+    this.isLoading = true;
     try {
       const createdUser = await this.supaBase.auth.signUp({
         email: this.email,
-        password: undefined,
+        password: this.password,
       });
       if (createdUser.error) {
         throw createdUser.error;
       }
       this.addUser(createdUser);
     } catch (error: any) {
+      this.isLoading = false;
       console.error(error);
       this.commonUtils.setToastr('error', error.message, 'Error signing up');
     }
@@ -69,6 +65,7 @@ export class LoginComponent implements OnInit {
       this.lastName = '';
       this.email = '';
       this.passwordMatch = '';
+      this.isLoading = false;
     }
   };
 
