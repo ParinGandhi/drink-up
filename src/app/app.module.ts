@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/features/navbar/navbar.component';
 import { LoginComponent } from './components/features/login/login.component';
 import { LoadingComponent } from './components/features/common/loading/loading.component';
+import { RecipesComponent } from './components/features/recipes/recipes.component';
+import { RecipeComponent } from './components/features/recipes/recipe/recipe.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { LoadingComponent } from './components/features/common/loading/loading.c
     NavbarComponent,
     LoginComponent,
     LoadingComponent,
+    RecipesComponent,
+    RecipeComponent,
   ],
   imports: [
     BrowserModule,
